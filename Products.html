@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products - Amanotameza</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+}
+
+header {
+  background: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+header h2 {
+  color: #0b3d91;
+}
+
+nav a {
+  text-decoration: none;
+  color: #222;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+.title {
+  text-align: center;
+  color: #0b3d91;
+  margin-bottom: 25px;
+}
+
+/* OPTIONS */
+
+.options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.option-btn {
+  border: none;
+  background: white;
+  color: #0b3d91;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.option-btn:hover,
+.option-btn.active {
+  background: #0b3d91;
+  color: white;
+}
+
+/* LEVEL */
+
+.level {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.level select {
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+/* PRODUCTS */
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product {
+  background: white;
+  width: 280px;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.product h3 {
+  color: #0b3d91;
+  margin-bottom: 10px;
+}
+
+.product p {
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #e65100;
+  margin: 15px 0;
+}
+
+.buy {
+  display: block;
+  text-align: center;
+  background: #0b3d91;
+  color: white;
+  padding: 11px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buy:hover {
+  background: #1565c0;
+}
+
+footer {
+  margin-top: 40px;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media(max-width:600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>Amanotameza</h2>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+</header>
+
+<div class="container">
+
+  <h1 class="title">Ibikoresho by'Amashuri</h1>
+
+  <!-- UBWOKO BW'IBIKORESHO -->
+
+  <div class="options">
+
+    <button class="option-btn active"
+    onclick="showCategory('syllabus', this)">
+      📖 Syllabus
+    </button>
+
+    <button class="option-btn"
+    onclick="showCategory('notes', this)">
+      📚 Notes
+    </button>
+
+    <button class="option-btn"
+    onclick="showCategory('assessment', this)">
+      📝 Assessment
+    </button>
+
+  </div>
+
+
+  <!-- O LEVEL / A LEVEL -->
+
+  <div class="level">
+
+    <label><strong>Hitamo Level:</strong></label>
+
+    <select id="levelSelect" onchange="showProducts()">
+
+      <option value="ol">O-Level</option>
+
+      <option value="al">A-Level</option>
+
+    </select>
+
+  </div>
+
+
+  <!-- PRODUCTS -->
+
+  <div id="products" class="products"></div>
+
+</div>
+
+
+<footer>
+
+  <p>© 2026 Amanotameza. All rights reserved.</p>
+
+</footer>
+
+
+<script>
+
+let category = "syllabus";
+
+const products = {
+
+  syllabus: {
+
+    ol: [
+      {
+        name: "Biology Syllabus - O-Level",
+        price: "1,000 RWF"
+      },
+      {
+        name: "Geography Syllabus - O-Level",
+        price: "1,000 RWF"
+      }
+    ],
+
+    al: [
+      {
+        name: "Biology Syllabus - A-Level",
+        price: "1,000 RWF"
+      },
+      {
+        name: "Geography Syllabus - A-Level",
+        price: "1,000 RWF"
+      }
+    ]
+
+  },
+
+
+  notes: {
+
+    ol: [
+      {
+        name: "Biology Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Math Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Physics Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Chemistry Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Literature Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "History Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "English Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Ikinyarwanda Note - O-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "General Studies Note - O-Level",
+        price: "800 RWF"
+      }
+    ],
+
+    al: [
+      {
+        name: "Biology Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Math Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Physics Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Chemistry Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Literature Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "History Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "English Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "Ikinyarwanda Note - A-Level",
+        price: "800 RWF"
+      },
+      {
+        name: "General Studies Note - A-Level",
+        price: "800 RWF"
+      }
+    ]
+
+  },
+
+
+  assessment: {
+
+    ol: [
+      {
+        name: "Assessment Collection Making

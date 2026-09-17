@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amanotameza</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #0b3d91;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #0b3d91, #1565c0);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .services {
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .services h2 {
+            color: #0b3d91;
+            margin-bottom: 15px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #0b3d91;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <img src="Logo.png" alt="Amanotameza Logo">
+        <span>Amanotameza</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>Murakaza neza kuri Amanotameza</h1>
+
+    <p>
+        Urubuga rwo kubona notes, syllabi n'ibikoresho by'amashuri.
+    </p>
+
+    <a href="products.html" class="btn">
+        Reba ibikoresho
+    </a>
+
+</section>
+
+
+<section class="services">
+
+    <h2>Amanotameza</h2>
+
+    <p>
+        Hano uzajya ubona ibikoresho byagufasha mu myigire yawe.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>📚 Notes</h3>
+            <p>
+                Shaka notes z'amasomo atandukanye.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📖 Syllabi</h3>
+            <p>
+                Bona syllabi zigufasha gutegura amasomo.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Assessment</h3>
+            <p>
+                Ibikoresho bigufasha mu gukora assessments.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    <p>© 2026 Amanotameza. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

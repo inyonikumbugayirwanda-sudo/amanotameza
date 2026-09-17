@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment - Amanotameza</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+}
+
+header {
+  background: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+header h2 {
+  color: #0b3d91;
+}
+
+nav a {
+  text-decoration: none;
+  color: #222;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.payment-box {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  color: #0b3d91;
+  margin-bottom: 25px;
+}
+
+.product-info {
+  background: #f1f5f9;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.product-info p {
+  margin: 8px 0;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #0b3d91;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #e65100;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.pay-btn {
+  width: 100%;
+  border: none;
+  background: #0b3d91;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 25px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pay-btn:hover {
+  background: #1565c0;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 40px;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>Amanotameza</h2>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+  </nav>
+
+</header>
+
+
+<div class="container">
+
+  <div class="payment-box">
+
+    <h1 class="title">Kwishyura</h1>
+
+    <div class="product-info">
+
+      <p>
+        <strong>Igicuruzwa:</strong>
+      </p>
+
+      <p id="productName" class="product-name">
+        -
+      </p>
+
+      <p>
+        <strong>Igiciro:</strong>
+      </p>
+
+      <p id="productPrice" class="price">
+        -
+      </p>
+
+    </div>
+
+
+    <label for="network">
+      Hitamo uburyo bwo kwishyura
+    </label>
+
+    <select id="network">
+
+      <option value="MTN">
+        MTN Mobile Money
+      </option>
+
+      <option value="AIRTEL">
+        Airtel Money
+      </option>
+
+    </select>
+
+
+    <label for="phone">
+      Nimero ya telefoni
+    </label>
+
+    <input
+      type="tel"
+      id="phone"
+      placeholder="07XXXXXXXX"
+      maxlength="10"
+    >
+
+
+    <button
+      class="pay-btn"
+      onclick="startPayment()">
+      Komeza Kwishyura
+    </button>
+
+
+    <div id="message" class="message"></div>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  <p>© 2026 Amanotameza. All rights reserved.</p>
+
+</footer>
+
+
+<script>
+
+const productName =
+  localStorage.getItem("selectedProduct");
+
+const productPrice =
+  localStorage.getItem("selectedPrice");
+
+
+document.getElementById("productName").textContent =
+  productName || "Nta gicuruzwa cyatoranyijwe";
+
+
+document.getElementById("productPrice").textContent =
+  productPrice || "-";
+
+
+function startPayment() {
+
+  const network =
+    document.getElementById("network").value;
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const message =
+    document.getElementById("message");
+
+
+  if (!productName || !productPrice) {
+
+    message.style.color = "red";
+
+    message.textContent =
+      "Banza uhitemo igicuruzwa.";
+
+    return;
+
+  }
+
+
+  if (!/^07[0-9]{8}$/.test(phone)) {
+
+    message.style.color = "red";
+
+    message.textContent =
+      "Andika nimero ya telefoni neza, urugero: 0795227215";
+
+    return;
+
+  }
+
+
+  message.style.color = "#0b3d91";
+
+  message.textContent =
+    "Turategura payment ya " +
+    network +
+    "...";
+
+
+  /*
+    AHA NI HO TUZAHUZA PAYPACK.
+
+    Kuri ubu iyi code ni interface gusa.
+    Ntabwo irohereza amafaranga.
+
+    Nyuma tuzashyiramo backend ya Paypack
+    kugira ngo MTN na Airtel bikore automatic.
+  */
+
+}
+
+</script>
+
+</body>
+</html>
